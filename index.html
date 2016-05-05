@@ -15,44 +15,36 @@
 	var rectheight=50;
 	
 	var dummy_data = [
-			{report_name: "BBSAR",metric_name: "NNM",rprt_x: 250,rprt_y:110,metric_x:500,metric_y:50},
-			{report_name: "BBSAR",metric_name: "RIG",rprt_x: 250,rprt_y:120,metric_x:510,metric_y:100},
-			{report_name: "BBSAR",metric_name: "NPCG",rprt_x: 250,rprt_y:130,metric_x:520,metric_y:150},
-			{report_name: "BBSAR",metric_name: "Gross Cust Acq",rprt_x: 250,rprt_y:140,metric_x:530,metric_y:200},
-			{report_name: "RBIF",metric_name: "NNM",rprt_x: 253,rprt_y:150,metric_x:500,metric_y:50},
-			{report_name: "RBIF",metric_name: "RIG",rprt_x: 253,rprt_y:160,metric_x:510,metric_y:100},
-			{report_name: "RBIF",metric_name: "NPCG",rprt_x: 253,rprt_y:170,metric_x:520,metric_y:150},
-			{report_name: "RBIF",metric_name: "Net Cust Acq",rprt_x: 253,rprt_y:180,metric_x:540,metric_y:250}
+			{report_name: "BBSAR",metric_name: "NNM",rprt_x: 250,rprt_y:100,metric_x:500,metric_y:50},
+			{report_name: "BBSAR",metric_name: "RIG",rprt_x: 250,rprt_y:100,metric_x:510,metric_y:100},
+			{report_name: "BBSAR",metric_name: "NPCG",rprt_x: 250,rprt_y:100,metric_x:520,metric_y:150},
+			{report_name: "BBSAR",metric_name: "Gross Cust Acq",rprt_x: 250,rprt_y:100,metric_x:530,metric_y:200},
+			{report_name: "RBIF",metric_name: "NNM",rprt_x: 253,rprt_y:140,metric_x:500,metric_y:50},
+			{report_name: "RBIF",metric_name: "RIG",rprt_x: 253,rprt_y:140,metric_x:510,metric_y:100},
+			{report_name: "RBIF",metric_name: "NPCG",rprt_x: 253,rprt_y:140,metric_x:520,metric_y:150},
+			{report_name: "RBIF",metric_name: "Net Cust Acq",rprt_x: 253,rprt_y:140,metric_x:540,metric_y:250}
 			];
 	
-	var svg = d3.select("#chart").append("svg").attr("height",height).attr("width",width).selectAll("g").data(dummy_data).enter()
-			.append("g").on("mouseover",function(){d3.select(this).style("stroke", "pink");})
-			.on("mouseout", function(){d3.select(this).style("stroke", "black");});
+	var svg = d3.select("#chart").append("svg").attr("height",height).attr("width",width);
 
+	var lines = svg.selectAll("line").data(dummy_data).enter().append("line");
+	var reports = svg.selectAll("rect").data(dummy_data).enter().append("rect");
+	var reportname = svg.selectAll("text").data(dummy_data).enter().append("text");
+	var metrics = svg.selectAll("circle").data(dummy_data).enter().append("circle");
+
+	metrics.attr("cx",function (d) {return d.metric_x;}).attr("cy",function (d) {return d.metric_y;})
+			.attr("r",radiusm).style("fill","green").attr("stroke","black");
 	
-	svg.append("line").attr("x1",function (d) {return (d.rprt_x+100);}).attr("y1",function (d) {return d.rprt_y;})
-				.attr("x2",function (d) {return d.metric_x;}).attr("y2",function (d) {return d.metric_y;}).
-				attr("stroke-width", 2).attr("stroke", "black");
+	reports.attr("x",function (d) {return d.rprt_x;}).attr("y",function (d) {return d.rprt_y;})
+			.attr("height",rectheight).attr("width",rectwidth).style("fill","red").attr("stroke","black");
 
-	svg.append("circle").attr("cx",function (d) {return d.metric_x;}).attr("cy",function (d) {return d.metric_y;})
-			.attr("r",radiusm).style("fill","green").attr("stroke","black")
-			.on("mouseover", function(){d3.select(this).style("fill", "blue");})
-		        .on("mouseout", function(){d3.select(this).style("fill", "green");});
-	
-	svg.append("rect").attr("x",function (d) {return d.rprt_x;}).attr("y",function (d) {return d.rprt_y;})
-			.attr("height",rectheight).attr("width",rectwidth).style("fill","red").attr("stroke","black")
-			.on("mouseover", function(){d3.select(this).style("fill", "yellow");})
-		        .on("mouseout", function(){d3.select(this).style("fill", "red");});
-
-	svg.append("text").attr("x",function (d) {return (d.rprt_x+10);}).attr("y",function (d) {return (d.rprt_y+35);})
+	reportname.attr("x",function (d) {return (d.rprt_x+10);}).attr("y",function (d) {return (d.rprt_y+35);})
 			.text(function (d) {return d.report_name;})
 			.attr("font-family", "sans-serif").attr("font-size", "30px").attr("fill", "black");
 	
-	svg.append("text").attr("x",function (d) {return (d.metric_x-10);}).attr("y",function (d) {return (d.metric_y);})
-			.text(function (d) {return d.metric_name;})
-			.attr("font-family", "sans-serif").attr("font-size", "10px").attr("fill", "black");	
-	
-			
+	lines.attr("x1",function (d) {return (d.rprt_x+100);}).attr("y1",function (d) {return d.rprt_y;})
+				.attr("x2",function (d) {return d.metric_x;}).attr("y2",function (d) {return d.metric_y;}).
+				attr("stroke-width", 2).attr("stroke", "black");		
 		
 
 	</script>
