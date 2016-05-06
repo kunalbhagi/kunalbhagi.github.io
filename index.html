@@ -13,7 +13,7 @@
 	var rectwidth=150;
 	var rectheight=50;
 	
-	d3.csv("kunalbhagi.github.io/data.csv", function(error,data) {
+	var data = d3.csv("kunalbhagi.github.io/data.csv", function(error,data) {
 		data.forEach(function(d) 
 		{
 			d.side=+d.side;
