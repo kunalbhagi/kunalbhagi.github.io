@@ -13,7 +13,7 @@
 	var rectwidth=150;
 	var rectheight=50;
 	
-	var data = d3.csv("kunalbhagi.github.io/data.csv", function(data) {console.log(data[1]);});
+	var data = d3.csv("kunalbhagi.github.io/data.csv", function(d) return{x4: +x4};);
 	
 	// var svg = d3.select("#chart").append("svg").attr("height",height).attr("width",width)
 	//		.selectAll("g").data(data).enter()
