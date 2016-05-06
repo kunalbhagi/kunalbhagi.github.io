@@ -13,8 +13,8 @@
 	var rectwidth=150;
 	var rectheight=50;
 	
-	d3.csv("kunalbhagi.github.io/data.csv", function(error,lead_dummy_data) {
-		lead_dummy_data.forEach(function(d) 
+	d3.csv("kunalbhagi.github.io/data.csv", function(error,data) {
+		data.forEach(function(d) 
 		{
 			d.side=+d.side;
 			d.x4=+d.x4;
@@ -26,7 +26,7 @@
 	});
 	
 	var svg = d3.select("#chart").append("svg").attr("height",height).attr("width",width)
-			.selectAll("g").data(lead_dummy_data).enter()
+			.selectAll("g").data(data).enter()
 			.append("g").on("mouseover",function(){d3.select(this).style("stroke", "pink");})
 			.on("mouseout", function(){d3.select(this).style("stroke", "black");});
 
