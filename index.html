@@ -27,7 +27,7 @@
 			.attr("height",function (d) {return d.side;}).attr("width",function (d) {return d.side;})
 			.style("fill", function (d) {return d.lead_stage;}).attr("stroke","black")
 			.on("mouseover", function(){d3.select(this).style("fill", "yellow");})
-		        .on("mouseout", function(){d3.select(this).style("fill", "red");});
+		        .on("mouseout", function(){d3.select(this).style("fill", function (d) {return d.lead_stage;});});
 
 	</script>
 	</body>
