@@ -16,11 +16,11 @@
 	
 	var lead_dummy_data = [
 			{lead_id: 01,side: 20,x1: 0,y1: 0,x2: 20,y2: 0,x3: 20,y3: 20,x4: 0,y4: 20,lead_age: 1,lead_stage: "blue",lead_exp_rev: 1000,lead_pb_conv: 0.8},
-			{lead_id: 01,side: 30,x1: 0,y1: 0,x2: 20,y2: 0,x3: 20,y3: 20,x4: 0,y4: 45,lead_age: 1,lead_stage: "blue",lead_exp_rev: 1000,lead_pb_conv: 0.8},
-			{lead_id: 01,side: 40,x1: 0,y1: 0,x2: 20,y2: 0,x3: 20,y3: 20,x4: 0,y4: 80,lead_age: 1,lead_stage: "blue",lead_exp_rev: 1000,lead_pb_conv: 0.8},
-			{lead_id: 01,side: 50,x1: 0,y1: 0,x2: 20,y2: 0,x3: 20,y3: 20,x4: 0,y4: 125,lead_age: 1,lead_stage: "blue",lead_exp_rev: 1000,lead_pb_conv: 0.8},
-			{lead_id: 01,side: 60,x1: 0,y1: 0,x2: 20,y2: 0,x3: 20,y3: 20,x4: 0,y4: 180,lead_age: 1,lead_stage: "blue",lead_exp_rev: 1000,lead_pb_conv: 0.8},
-			{lead_id: 01,side: 70,x1: 0,y1: 0,x2: 20,y2: 0,x3: 20,y3: 20,x4: 0,y4: 245,lead_age: 1,lead_stage: "blue",lead_exp_rev: 1000,lead_pb_conv: 0.8}
+			{lead_id: 01,side: 30,x1: 0,y1: 0,x2: 20,y2: 0,x3: 20,y3: 20,x4: 0,y4: 45,lead_age: 1,lead_stage: "blue",lead_exp_rev: 1000,lead_pb_conv: 0.1},
+			{lead_id: 01,side: 40,x1: 0,y1: 0,x2: 20,y2: 0,x3: 20,y3: 20,x4: 0,y4: 80,lead_age: 1,lead_stage: "blue",lead_exp_rev: 1000,lead_pb_conv: 0.6},
+			{lead_id: 01,side: 50,x1: 0,y1: 0,x2: 20,y2: 0,x3: 20,y3: 20,x4: 0,y4: 125,lead_age: 1,lead_stage: "blue",lead_exp_rev: 1000,lead_pb_conv: 0.3},
+			{lead_id: 01,side: 60,x1: 0,y1: 0,x2: 20,y2: 0,x3: 20,y3: 20,x4: 0,y4: 180,lead_age: 1,lead_stage: "blue",lead_exp_rev: 1000,lead_pb_conv: 0.9},
+			{lead_id: 01,side: 70,x1: 0,y1: 0,x2: 20,y2: 0,x3: 20,y3: 20,x4: 0,y4: 245,lead_age: 1,lead_stage: "blue",lead_exp_rev: 1000,lead_pb_conv: 0.5}
 			];
 	
 	var svg = d3.select("#chart").append("svg").attr("height",height).attr("width",width)
@@ -30,7 +30,9 @@
 
 	svg.append("rect").attr("x",function (d) {return d.x4;}).attr("y",function (d) {return d.y4;})
 			.attr("height",function (d) {return d.side;}).attr("width",function (d) {return d.side;})
-			.style("fill", function (d) {return d.lead_stage;}).attr("stroke","black")
+			.style("fill", function (d) {return d.lead_stage;})
+			.style("opacity", function (d) {return d.lead_pb_conv;})
+			.attr("stroke","black")
 			.on("mouseover", function(){d3.select(this).style("fill", "yellow");})
 		        .on("mouseout", function(){d3.select(this).style("fill", function (d) {return d.lead_stage;});});
 
