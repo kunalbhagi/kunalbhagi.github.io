@@ -10,7 +10,7 @@ var force = d3.layout.force()
 
 var svg = d3.select("#cloud");
 
-d3.json("cloud.json", function(json) {
+d3.json("http://kunalbhagi.github.io/cloud.json", function(json) {
     force
         .nodes(json.nodes)
         .links(json.links)
