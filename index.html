@@ -25,15 +25,15 @@
         height = 1000;
 
     var nodes = [
-        { name: "report1", x:  400, y: 400,r:25 },
-        { name: "metric1", x: 200, y: 50 ,r:10 },
-        { name: "metric2", x: 200, y: 250,r:10 },
-        { name: "metric3", x: 200, y: 450,r:10 },
-        { name: "report2", x: 400, y: 600,r:25 },
-        { name: "metric4", x: 700, y: 50,r:10 },
-        { name: "metric5", x: 700, y: 250,r:10 },
-        { name: "metric6", x: 700, y: 450,r:10 },
-        { name: "metric7", x: 700, y: 650,r:10 }
+        { name: "report1", x:  400, y: 400,r:25,color: "blue" },
+        { name: "metric1", x: 200, y: 50 ,r:10,color: "green" },
+        { name: "metric2", x: 200, y: 250,r:10,color: "green" },
+        { name: "metric3", x: 200, y: 450,r:10,color: "green" },
+        { name: "report2", x: 400, y: 600,r:25,color: "green" },
+        { name: "metric4", x: 700, y: 50,r:10,color: "blue" },
+        { name: "metric5", x: 700, y: 250,r:10,color: "green" },
+        { name: "metric6", x: 700, y: 450,r:10,color: "green" },
+        { name: "metric7", x: 700, y: 650,r:10,color: "green" }
         
                 ];
 
@@ -79,13 +79,14 @@
     node.attr('r', function(d) { return d.r; })
         .attr('cx', function(d) { return d.x; })
         .attr('cy', function(d) { return d.y; })
-        .attr("text",function(d) { return d.name; });
+        .attr("fill",function(d) { return d.color; });
         
     text.attr("x", function(d) { return d.x+5; })
                  .attr("y", function(d) { return d.y+5; })
                  .text( function (d) { return d.name; })
                  .attr("font-family", "sans-serif")
-                 .attr("font-size", "20px");
+                 .attr("font-size", "8px")
+                 .attr("fill", "red");
 
     link.attr('x1', function(d) { return d.source.x; })
         .attr('y1', function(d) { return d.source.y; })
